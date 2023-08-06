@@ -1,0 +1,15 @@
+body {
+  width: 600px;
+}
+
+#searchResults {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 15px;
+}
+
+#searchResults img {
+  object-fit: cover;
+  width: 100%;
+}
