@@ -1,6 +1,6 @@
 {
-  "name": "Vinted Extension Test",
-  "description": "Build an Extension!",
+  "name": "Vinted Favorites - Group and Filter",
+  "description": "Group and Filter your favorited item on Vinted",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
@@ -16,17 +16,17 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "/images/get_started16.png",
-      "32": "/images/get_started32.png",
-      "48": "/images/get_started48.png",
-      "128": "/images/get_started128.png"
+      "16": "/images/clothes16.png",
+      "32": "/images/clothes32.png",
+      "48": "/images/clothes48.png",
+      "128": "/images/clothes128.png"
     }
   },
   "icons": {
-    "16": "/images/get_started16.png",
-    "32": "/images/get_started32.png",
-    "48": "/images/get_started48.png",
-    "128": "/images/get_started128.png"
+    "16": "/images/clothes16.png",
+    "32": "/images/clothes32.png",
+    "48": "/images/clothes48.png",
+    "128": "/images/clothes128.png"
   },
   "options_page": "options.html",
   "content_scripts": [
