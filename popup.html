@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="popup.css">
-    <base target="_blank">
-  </head>
-  <body>
-    <!-- <form onsubmit="filterFavs()">  -->
 
-      <label for="queryValue">Insert searched queries (OR: with comma, AND: with space)'</label>
-      <input type="text" name="queryValue" id="queryValue">
-      <input type="submit">
-      <button id="filter">Filter</button>
-    <!-- </form> -->
+<head>
+  <link rel="stylesheet" href="popup.css">
+  <base target="_blank">
+</head>
 
-    <div id="searchResults"></div>
+<body>
+  <label for="queryValue">Insert searched queries (OR: with comma, AND: with space)'</label>
+  <input type="text" name="queryValue" id="queryValue">
+  <button id="filter">Filter</button>
 
-    <h2>Grouped by seller:</h2>
-    <div id="sellers"></div>
-    
-    <script src="popup.js"></script>
-    <script src="popup_after.js"></script>
-  </body>
+  <div id="searchResults"></div>
+
+  <h2>Grouped by seller:</h2>
+  <div id="sellers"></div>
+
+  <script src="popup.js"></script>
+  <script src="popup_after.js"></script>
+</body>
+
 </html>

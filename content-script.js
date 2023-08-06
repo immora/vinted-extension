@@ -131,32 +131,10 @@ function readDom() {
     console.log({allFavoritedItems});
 
     return {orderedSellers, allFavoritedItems};
-/* 
-    chrome.runtime.sendMessage(countSeller, function (response) {
-        console.log(response.farewell);
-    });
-
-    chrome.runtime.onMessage.addListener(
-        function (request, sender, sendResponse) {
-            console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
-            if (request.greeting === "hello")
-                sendResponse({ farewell: "goodbye" });
-        }
-    ); */
 }
 
 chrome.runtime.sendMessage({
-    total_elements: 'dupa' // or whatever you want to send
+    total_elements: 'whatever' // or whatever you want to send
   });
-
-/* chrome.storage.local.set({key: value}, function() {
-    console.log('Value is set to ' + value);
-  });
-  
-  chrome.storage.local.get(['key'], function(result) {
-    console.log('Value currently is ' + result.key);
-  }); */
 
   

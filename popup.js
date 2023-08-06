@@ -160,30 +160,3 @@ function includesAllQueries(title, queries){
     var isEvery = queries.every(query => title.toLowerCase().includes(query.trim().toLowerCase()));
     return isEvery;
 }
-
-/* 
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        console.log(sender.tab ?
-            "from a content script:" + sender.tab.url :
-            "from the extension");
-
-        //sellersDiv.append(request);
-
-        for (var i in request) {
-            sellersDiv.insertAdjacentHTML('beforeend', '<h3>' + i + '</h3><div>Count: ' + request[i].count + '</div><div>Price: ' + request[i].price + '</div><a href="' + request[i].link + '">Click here.</a>');
-        }
-        console.log({ request });
-
-
-        if (request.greeting === "hello")
-            sendResponse({ farewell: "goodbye" });
-    }
-);
-
-chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
-        console.log(response);
-    });
-});
- */
