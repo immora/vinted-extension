@@ -40,68 +40,48 @@ function readDom() {
     let countSeller = {};
     let allFavoritedItems = [];
 
-    // change favoritedItemsNodes to array
     let favoritedItemsArray = Array.from(favoritedItemsNodes);
     favoritedItemsArray.forEach(favoritedItem => {
-        // get first node with data-testid="product-item-id-*"
+
         let productItemIdNode = favoritedItem.querySelector(`[${testDataAttributeName}^="${testDataAttributeProductItemIdPrefixValue}"]`);
-        // get value of data-testid="product-item-id-*"
-        let itemId = productItemIdNode.getAttribute(`${testDataAttributeName}`);        
-        console.log(itemId);
-        // get value of data-testid="product-item-id-*--owner"
+        let itemId = productItemIdNode.getAttribute(`${testDataAttributeName}`);
+
         let itemOwner = productItemIdNode.querySelector(`[${testDataAttributeName}^="${itemId}${testDataAttributeOwnerValue}"]`)?.textContent ?? '';
-        console.log(itemOwner);
-        // get value of data-testid="product-item-id-*--overlay-link"
         let itemLink = productItemIdNode.querySelector(`[${testDataAttributeName}^="${itemId}${testDataAttributeOverlayLinkValue}"]`)?.href ?? '';
-        console.log(itemLink);
-        // get value of data-testid="product-item-id-*--image"
         let itemImage = productItemIdNode.querySelector(`[${testDataAttributeName}^="${itemId}${testDataAttributeImageValue}"] img`)?.src ?? '';
-        console.log(itemImage);
-        // get item title
         let itemTitle = productItemIdNode.querySelector(`[${testDataAttributeName}^="${itemId}${testDataAttributeImageValue}"] img`)?.alt ?? '';
-        console.log(itemTitle);
-        // get value of data-testid="product-item-id-*--price-text"
         let itemPrice = productItemIdNode.querySelector(`[${testDataAttributeName}^="${itemId}${testDataAttributePriceValue}"]`)?.textContent ?? '';
-        console.log(itemPrice);
-        // get value of data-testid="product-item-id-*--description-title"
         let itemSize = productItemIdNode.querySelector(`[${testDataAttributeName}^="${itemId}${testDataAttributeSizeValue}"]`)?.textContent ?? '';
-        console.log(itemSize);
-        // get value of data-testid="product-item-id-*--description-subtitle"
         let itemBrand = productItemIdNode.querySelector(`[${testDataAttributeName}^="${itemId}${testDataAttributeBrandValue}"]`)?.textContent ?? '';
-        console.log(itemBrand);
-        // get value for is item sold out
         let isSoldOut = favoritedItem.querySelector('div[class^="new-item-box__overlay"] div[class^="web_ui__Cell__success"]') ? true : false;
-        console.log(isSoldOut);
 
-        // initialize seller object in one line
-        countSeller[itemOwner] = countSeller[itemOwner] || { name: itemOwner, count: 0, price: 0, link: '' };
-        // increment count of items for seller
-        countSeller[itemOwner].count += 1;
-        // increment price of items for seller
-        countSeller[itemOwner].price += parseInt(itemPrice);
-        // set link for seller
-        countSeller[itemOwner].link = itemLink;
+        if (!isSoldOut) {
+            // initialize seller object if not already initialized
+            countSeller[itemOwner] = countSeller[itemOwner] || { name: itemOwner, count: 0, price: 0, link: '' };
+            countSeller[itemOwner].count += 1;
+            countSeller[itemOwner].price += parseInt(itemPrice);
+            countSeller[itemOwner].link = itemLink;
 
-        // push item to array
-        allFavoritedItems.push({
-            itemTitle,
-            itemLink,
-            itemImage,
-            itemPrice,
-            itemSize,
-            itemBrand,
-            isSoldOut,
-            seller: {
-                name: itemOwner,
-                link: countSeller[itemOwner].link
-            }
-        })
+            allFavoritedItems.push({
+                itemTitle,
+                itemLink,
+                itemImage,
+                itemPrice,
+                itemSize,
+                itemBrand,
+                isSoldOut,
+                seller: {
+                    name: itemOwner,
+                    link: countSeller[itemOwner].link
+                }
+            })
+        }
     });
 
     // add count and price to seller object
-    Object.entries(countSeller).forEach(([k,v]) => {
+    Object.entries(countSeller).forEach(([k, v]) => {
         allFavoritedItems.forEach(item => {
-            if (item.seller.name === k){
+            if (item.seller.name === k) {
                 item.seller = {
                     ...item.seller,
                     count: v.count,
@@ -112,29 +92,28 @@ function readDom() {
     })
 
     // sort sellers by name
-    let orderedSellers = Object.values(countSeller).sort(function(a, b) {
+    let orderedSellers = Object.values(countSeller).sort(function (a, b) {
         const nameA = a.name.toUpperCase(); // ignore upper and lowercase
         const nameB = b.name.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
-          return -1;
+            return -1;
         }
         if (nameA > nameB) {
-          return 1;
+            return 1;
         }
-      
+
         // names must be equal
         return 0;
-      });
+    });
 
-    console.log({countSeller});
-    console.log({orderedSellers});
-    console.log({allFavoritedItems});
+    console.log({ countSeller });
+    console.log({ orderedSellers });
+    console.log({ allFavoritedItems });
 
-    return {orderedSellers, allFavoritedItems};
+    return { orderedSellers, allFavoritedItems };
 }
 
 chrome.runtime.sendMessage({
     total_elements: 'whatever' // or whatever you want to send
-  });
+});
 
-  
