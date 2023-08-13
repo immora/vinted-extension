@@ -28,7 +28,6 @@
     "48": "/images/clothes48.png",
     "128": "/images/clothes128.png"
   },
-  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
