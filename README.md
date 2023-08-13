@@ -2,7 +2,10 @@
 Vinted Chrome Extension - group and filter your favorite items
 
 # Local development
-...
+<!-- How to run locally chrome extension? -->
+1. Go to chrome://extensions/
+2. Enable developer mode
+3. Click on "Load unpacked" and select the folder with the extension
 
 ## Testing in Chrome (console tab)
 1. Go to the bottom of Favorites page:
